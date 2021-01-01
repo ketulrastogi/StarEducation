@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "538363331416",
+    "project_id": "star-education-3b577",
+    "storage_bucket": "star-education-3b577.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538363331416:android:4dc3f981b55e8bf03b9b2d",
+        "android_client_info": {
+          "package_name": "in.bugle.stareducation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538363331416-3442iqbatpct0jvmc6tchrl0ksuhcaqf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.bugle.stareducation",
+            "certificate_hash": "33dda24071dac1d2d0d430c5f8043de41522f300"
+          }
+        },
+        {
+          "client_id": "538363331416-ms9uv871bsigplvckplc7nti79d1msfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWI1rgsIrVyPOde6D_Emf_ZYRxiIE7h0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538363331416-ms9uv871bsigplvckplc7nti79d1msfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
