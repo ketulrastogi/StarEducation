@@ -11,7 +11,7 @@ class ChapterListScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ChapterListScreenViewModel>.reactive(
-      onModelReady: (model) => model.loadData(),
+      onModelReady: (model) => model.loadData(subjectDetails),
       viewModelBuilder: () => ChapterListScreenViewModel(),
       builder: (context, model, child) {
         return Scaffold(
@@ -73,16 +73,28 @@ class ChapterListScreenView extends StatelessWidget {
                       child: Card(
                         color: Theme.of(context).primaryColor,
                         child: ListTile(
+                          onTap: () async {
+                            await model.navigateToTopicDetailsScreen(
+                                model.lastTopicDetails);
+                          },
                           leading: Container(
                             height: 64.0,
                             width: 64.0,
-                            child: Image.network(
-                              '${model.imageBaseUrl}b21487bfe432feef9d6f5da7d56bf3c7.jpg',
-                              fit: BoxFit.fill,
-                            ),
+                            child: (model.lastTopicDetails != null)
+                                ? Image.network(
+                                    '${model.imageBaseUrl}${model.lastTopicDetails['top_thumbnail']}',
+                                    fit: BoxFit.fill,
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    ),
+                                  ),
                           ),
                           title: Text(
-                            'Demo Exercise',
+                            '${(model.lastTopicDetails != null) ? model.lastTopicDetails['topic_name'] : ''}',
                             style:
                                 Theme.of(context).textTheme.headline6.copyWith(
                                       color: Colors.white,
@@ -90,7 +102,7 @@ class ChapterListScreenView extends StatelessWidget {
                                     ),
                           ),
                           subtitle: Text(
-                            'Demo Chapter',
+                            '${(model.lastTopicDetails != null) ? model.lastTopicDetails['chapter_name'] : ''}',
                             style:
                                 Theme.of(context).textTheme.bodyText1.copyWith(
                                       color: Colors.white,
@@ -108,7 +120,6 @@ class ChapterListScreenView extends StatelessWidget {
                             ),
                             // onPressed: () {},
                           ),
-                          onTap: () {},
                         ),
                       ),
                     ),
@@ -155,57 +166,79 @@ class ChapterListScreenView extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  height: 160.0,
-                                  child: ListView.builder(
-                                    // padding: EdgeInsets.only(left: 8.0),
-                                    itemCount: 2,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, tindex) {
-                                      return Card(
-                                        child: Container(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                padding: EdgeInsets.all(8.0),
-                                                width: 180.0,
-                                                child: Image.network(
-                                                  '${model.imageBaseUrl}${model.chapterList[cindex]['topic'][tindex]['top_thumbnail']}',
-                                                  fit: BoxFit.fill,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 8.0,
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16.0),
-                                                child: Text(
-                                                  '${model.chapterList[cindex]['topic'][tindex]['topic_name']}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .subtitle1
-                                                      .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        // color: Colors.grey.shade800,
+                                (model.chapterList[cindex]['topic'].length > 0)
+                                    ? Container(
+                                        height: 160.0,
+                                        child: ListView.builder(
+                                          // padding: EdgeInsets.only(left: 8.0),
+                                          itemCount: model.chapterList.length,
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, tindex) {
+                                            return Card(
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await model.setLastTopicInfo(
+                                                      subjectDetails,
+                                                      model.chapterList[cindex]
+                                                          ['topic'][tindex]);
+                                                  await model
+                                                      .navigateToTopicDetailsScreen(
+                                                          model.chapterList[
+                                                                      cindex]
+                                                                  ['topic']
+                                                              [tindex]);
+                                                },
+                                                child: Container(
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.all(8.0),
+                                                        width: 180.0,
+                                                        child: Image.network(
+                                                          '${model.imageBaseUrl}${model.chapterList[cindex]['topic'][tindex]['top_thumbnail']}',
+                                                          fit: BoxFit.fill,
+                                                        ),
                                                       ),
+                                                      SizedBox(
+                                                        height: 8.0,
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    16.0),
+                                                        child: Text(
+                                                          '${model.chapterList[cindex]['topic'][tindex]['topic_name']}',
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .subtitle1
+                                                                  .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    // color: Colors.grey.shade800,
+                                                                  ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 8.0,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                height: 8.0,
-                                              ),
-                                            ],
-                                          ),
+                                            );
+                                          },
                                         ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                      )
+                                    : SizedBox(),
                               ],
                             ),
                           );
@@ -225,17 +258,22 @@ class ChapterListScreenView extends StatelessWidget {
                 height: 16.0,
               ),
               Container(
-                child: Card(
-                  color: Colors.green,
-                  child: Container(
-                    height: 64.0,
-                    child: Center(
-                      child: Text(
-                        'Chapter Progress',
-                        style: Theme.of(context).textTheme.headline6.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                child: InkWell(
+                  onTap: () {
+                    model.navigateToChapterProgressScreen(subjectDetails);
+                  },
+                  child: Card(
+                    color: Colors.green,
+                    child: Container(
+                      height: 64.0,
+                      child: Center(
+                        child: Text(
+                          'Chapter Progress',
+                          style: Theme.of(context).textTheme.headline6.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                        ),
                       ),
                     ),
                   ),

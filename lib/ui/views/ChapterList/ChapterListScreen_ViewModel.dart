@@ -18,9 +18,39 @@ class ChapterListScreenViewModel extends BaseViewModel {
   Map<String, dynamic> _lastTopicDetails;
   Map<String, dynamic> get lastTopicDetails => _lastTopicDetails;
 
-  loadData() async {
-    await getChapterList('4');
-    await getLastTopicDetails('4');
+  loadData(Map<String, dynamic> subjectDetails) async {
+    await getChapterList(subjectDetails['sub_id']);
+    await getLastTopicDetails(subjectDetails['sub_id']);
+  }
+
+  navigateToTopicDetailsScreen(Map<String, dynamic> topicDetails) async {
+    await _navigationService.navigateTo(
+      Routes.topicDetailsScreenViewRoute,
+      arguments: TopicDetailsScreenViewArguments(topicDetails: topicDetails),
+    );
+    notifyListeners();
+  }
+
+  setLastTopicInfo(Map<String, dynamic> subjectDetails,
+      Map<String, dynamic> topicDetails) async {
+    try {
+      try {
+        Map<String, dynamic> response =
+            await _subjectService.setLastTopicDetail(
+                subjectDetails['sub_id'], topicDetails['top_id']);
+        if (!response['result'] || response['data'] == null) {
+          _snackbarService.showSnackbar(
+              message: 'No chapters available for Selected Subject. ');
+        } else {
+          _chapterList = [...response['data']];
+          notifyListeners();
+        }
+      } catch (e) {
+        _snackbarService.showSnackbar(
+            message:
+                'An error occured while getting Chapters for Selected Subjects. $e.');
+      }
+    } catch (e) {}
   }
 
   getChapterList(String subjectId) async {
@@ -57,5 +87,13 @@ class ChapterListScreenViewModel extends BaseViewModel {
           message:
               'An error occured while getting Recent Chapters for Selected Subjects. $e.');
     }
+  }
+
+  navigateToChapterProgressScreen(Map<String, dynamic> subjectDetails) {
+    _navigationService.navigateTo(
+      Routes.chapterProgressScreenViewRoute,
+      arguments:
+          ChapterProgressScreenViewArguments(subjectDetails: subjectDetails),
+    );
   }
 }

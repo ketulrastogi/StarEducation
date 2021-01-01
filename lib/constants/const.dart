@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const String imageBaseUrl =
+    'http://sampleserver.org/starmath/uploads/thumbnails/topic_thumbnails/';
+
 const kOrangeColor = const Color(0xFFFC6A57);
 const kBlueLightColor = const Color(0xFF007EFF);
 const kRedDarkColor = const Color(0xFFFB4E4E);

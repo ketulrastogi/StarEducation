@@ -642,4 +642,24 @@ class SubjectService {
     print('SubjectService [642]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
   }
+
+  Future<Map<String, dynamic>> getTopicInfo(
+    String topicId,
+  ) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map<String, dynamic> userProfile =
+        jsonDecode(sharedPreferences.getString('user_profile'));
+    http.Response response = await http.post(
+      "http://sampleserver.org/starmath/api/topic_info",
+      body: {
+        'user_id': userProfile['id'],
+        'topic_id': topicId,
+      },
+    );
+
+    String jsonsDataString = response.body.toString();
+
+    print('SubjectService [433]: $jsonsDataString');
+    return jsonDecode(jsonsDataString);
+  }
 }

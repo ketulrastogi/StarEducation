@@ -12,10 +12,14 @@ import 'package:flutter/material.dart';
 import '../ui/views/AddScratchCard/AddScratchCardScreen_View.dart';
 import '../ui/views/AddSubject/AddSubjectScreen_View.dart';
 import '../ui/views/ChapterList/ChapterListScreen_View.dart';
+import '../ui/views/ChapterProgress/ChapterProgressScreen_View.dart';
 import '../ui/views/ForgotOtp/ForgotOtp_View.dart';
 import '../ui/views/ForgotPassword/ForgotPassword_View.dart';
 import '../ui/views/ResetPassword/ResetPassword_View.dart';
 import '../ui/views/Subscription/SubscriptionScreen_View.dart';
+import '../ui/views/TopicConcept/TopicConceptScreen_View.dart';
+import '../ui/views/TopicDetails/TopicDetailsScreen_View.dart';
+import '../ui/views/TopicExercise/TopicExerciseScreen_View.dart';
 import '../ui/views/TrialEndedSubjectList/TrialEndedSubjectListScreen_View.dart';
 import '../ui/views/home/HomeScreen_View.dart';
 import '../ui/views/login/login_view.dart';
@@ -41,6 +45,14 @@ class Routes {
   static const String trialEndedSubjectListScreenViewRoute =
       '/trial-ended-subject-list-screen-view';
   static const String chapterListScreenViewRoute = '/chapter-list-screen-view';
+  static const String chapterProgressScreenViewRoute =
+      '/chapter-progress-screen-view';
+  static const String topicDetailsScreenViewRoute =
+      '/topic-details-screen-view';
+  static const String topicConceptScreenViewRoute =
+      '/topic-concept-screen-view';
+  static const String topicExerciseScreenViewRoute =
+      '/topic-exercise-screen-view';
   static const all = <String>{
     rootViewRoute,
     loginViewRoute,
@@ -56,6 +68,10 @@ class Routes {
     subscriptionScreenViewRoute,
     trialEndedSubjectListScreenViewRoute,
     chapterListScreenViewRoute,
+    chapterProgressScreenViewRoute,
+    topicDetailsScreenViewRoute,
+    topicConceptScreenViewRoute,
+    topicExerciseScreenViewRoute,
   };
 }
 
@@ -79,6 +95,12 @@ class Router extends RouterBase {
     RouteDef(Routes.trialEndedSubjectListScreenViewRoute,
         page: TrialEndedSubjectListScreenView),
     RouteDef(Routes.chapterListScreenViewRoute, page: ChapterListScreenView),
+    RouteDef(Routes.chapterProgressScreenViewRoute,
+        page: ChapterProgressScreenView),
+    RouteDef(Routes.topicDetailsScreenViewRoute, page: TopicDetailsScreenView),
+    RouteDef(Routes.topicConceptScreenViewRoute, page: TopicConceptScreenView),
+    RouteDef(Routes.topicExerciseScreenViewRoute,
+        page: TopicExerciseScreenView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -201,6 +223,54 @@ class Router extends RouterBase {
         settings: data,
       );
     },
+    ChapterProgressScreenView: (data) {
+      final args = data.getArgs<ChapterProgressScreenViewArguments>(
+        orElse: () => ChapterProgressScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChapterProgressScreenView(
+          key: args.key,
+          subjectDetails: args.subjectDetails,
+        ),
+        settings: data,
+      );
+    },
+    TopicDetailsScreenView: (data) {
+      final args = data.getArgs<TopicDetailsScreenViewArguments>(
+        orElse: () => TopicDetailsScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => TopicDetailsScreenView(
+          key: args.key,
+          topicDetails: args.topicDetails,
+        ),
+        settings: data,
+      );
+    },
+    TopicConceptScreenView: (data) {
+      final args = data.getArgs<TopicConceptScreenViewArguments>(
+        orElse: () => TopicConceptScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => TopicConceptScreenView(
+          key: args.key,
+          topicDetails: args.topicDetails,
+        ),
+        settings: data,
+      );
+    },
+    TopicExerciseScreenView: (data) {
+      final args = data.getArgs<TopicExerciseScreenViewArguments>(
+        orElse: () => TopicExerciseScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => TopicExerciseScreenView(
+          key: args.key,
+          topicDetails: args.topicDetails,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -251,4 +321,32 @@ class ChapterListScreenViewArguments {
   final Key key;
   final Map<String, dynamic> subjectDetails;
   ChapterListScreenViewArguments({this.key, this.subjectDetails});
+}
+
+/// ChapterProgressScreenView arguments holder class
+class ChapterProgressScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> subjectDetails;
+  ChapterProgressScreenViewArguments({this.key, this.subjectDetails});
+}
+
+/// TopicDetailsScreenView arguments holder class
+class TopicDetailsScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> topicDetails;
+  TopicDetailsScreenViewArguments({this.key, this.topicDetails});
+}
+
+/// TopicConceptScreenView arguments holder class
+class TopicConceptScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> topicDetails;
+  TopicConceptScreenViewArguments({this.key, this.topicDetails});
+}
+
+/// TopicExerciseScreenView arguments holder class
+class TopicExerciseScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> topicDetails;
+  TopicExerciseScreenViewArguments({this.key, this.topicDetails});
 }
