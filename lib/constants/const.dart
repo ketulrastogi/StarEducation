@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 const String imageBaseUrl =
     'http://sampleserver.org/starmath/uploads/thumbnails/topic_thumbnails/';
+const String hintImageBaseUrl =
+    'http://sampleserver.org/starmath/uploads/hint/';
 
 const kOrangeColor = const Color(0xFFFC6A57);
 const kBlueLightColor = const Color(0xFF007EFF);

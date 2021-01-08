@@ -87,7 +87,10 @@ class TopicDetailsScreenView extends StatelessWidget {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     )),
-                        onPressed: () {},
+                        onPressed: () {
+                          model.navigateToTaskScreen(topicDetails['top_id'],
+                              Theme.of(context).primaryColor);
+                        },
                       ),
                     ),
             ],

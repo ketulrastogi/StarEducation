@@ -3,6 +3,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stareducation/app/locator.dart';
 import 'package:stareducation/services/subject_service.dart';
 import 'package:stareducation/app/routes.gr.dart';
+import 'package:flutter/material.dart';
 
 class TopicExerciseScreenViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
@@ -29,4 +30,20 @@ class TopicExerciseScreenViewModel extends BaseViewModel {
               'An error occured while getting exercise for selected topic. $e.');
     }
   }
+
+  navigateToExerciseQuestionScreenView(
+      String title, Color color, String exerciseId) {
+    _navigationService.navigateTo(
+      Routes.exerciseQuestionScreenViewRoute,
+      arguments: ExerciseQuestionScreenViewArguments(
+        questionType: title,
+        questionTypeColor: color,
+        exerciseId: exerciseId,
+        questionGroup: 'exercise',
+      ),
+    );
+  }
+
+  navigateToTryQuestion() {}
+  navigateToApplyQuestion() {}
 }

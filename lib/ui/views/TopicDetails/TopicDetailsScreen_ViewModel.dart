@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stareducation/app/locator.dart';
@@ -47,5 +48,20 @@ class TopicDetailsScreenViewModel extends BaseViewModel {
         ),
       );
     }
+  }
+
+  navigateToTaskScreen(
+    String topicId,
+    Color color,
+  ) {
+    _navigationService.navigateTo(
+      Routes.exerciseQuestionScreenViewRoute,
+      arguments: ExerciseQuestionScreenViewArguments(
+        exerciseId: topicId,
+        questionTypeColor: color,
+        questionType: 'task',
+        questionGroup: 'task',
+      ),
+    );
   }
 }

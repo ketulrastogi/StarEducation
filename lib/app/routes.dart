@@ -18,6 +18,7 @@ import 'package:stareducation/ui/views/root/root_view.dart';
 import 'package:stareducation/ui/views/user_profile/user_profile_view.dart';
 import 'package:stareducation/ui/views/otp/otp_view.dart';
 import 'package:stareducation/ui/views/AddScratchCard/AddScratchCardScreen_View.dart';
+import 'package:stareducation/ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
 
 // Defining routes and global transitions
 @CustomAutoRouter(
@@ -94,6 +95,10 @@ import 'package:stareducation/ui/views/AddScratchCard/AddScratchCardScreen_View.
     MaterialRoute(
       page: TopicExerciseScreenView,
       name: 'topicExerciseScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: ExerciseQuestionScreenView,
+      name: 'exerciseQuestionScreenViewRoute',
     ),
     // MaterialRoute(
     //   page: HomeScreen,

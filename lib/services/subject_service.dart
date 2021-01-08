@@ -9,7 +9,7 @@ class SubjectService {
       "http://sampleserver.org/starmath/api/medium_standard_board",
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [13]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -33,7 +33,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [38]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -53,7 +53,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [58]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -70,7 +70,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [77]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -90,7 +90,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [95]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -109,7 +109,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [114]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -128,7 +128,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [133]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -147,7 +147,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [153]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -167,7 +167,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [172]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -187,7 +187,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [192]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -206,7 +206,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [211]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -238,7 +238,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [243]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -257,7 +257,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [262]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -276,7 +276,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [281]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -295,7 +295,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [300]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -315,7 +315,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [320]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -334,7 +334,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [340]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -364,7 +364,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [369]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -386,7 +386,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [391]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -408,7 +408,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [413]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -428,7 +428,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [433]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -448,7 +448,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [453]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -467,7 +467,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [453]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -491,7 +491,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [496]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -513,7 +513,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [518]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -541,7 +541,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [546]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -561,7 +561,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [566]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -580,7 +580,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [585]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -600,7 +600,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [605]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -617,7 +617,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [623]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -637,7 +637,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [642]: $jsonsDataString');
     return jsonDecode(jsonsDataString);
@@ -657,7 +657,7 @@ class SubjectService {
       },
     );
 
-    String jsonsDataString = response.body.toString();
+    String jsonsDataString = response.body;
 
     print('SubjectService [433]: $jsonsDataString');
     return jsonDecode(jsonsDataString);

@@ -13,6 +13,7 @@ import '../ui/views/AddScratchCard/AddScratchCardScreen_View.dart';
 import '../ui/views/AddSubject/AddSubjectScreen_View.dart';
 import '../ui/views/ChapterList/ChapterListScreen_View.dart';
 import '../ui/views/ChapterProgress/ChapterProgressScreen_View.dart';
+import '../ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
 import '../ui/views/ForgotOtp/ForgotOtp_View.dart';
 import '../ui/views/ForgotPassword/ForgotPassword_View.dart';
 import '../ui/views/ResetPassword/ResetPassword_View.dart';
@@ -53,6 +54,8 @@ class Routes {
       '/topic-concept-screen-view';
   static const String topicExerciseScreenViewRoute =
       '/topic-exercise-screen-view';
+  static const String exerciseQuestionScreenViewRoute =
+      '/exercise-question-screen-view';
   static const all = <String>{
     rootViewRoute,
     loginViewRoute,
@@ -72,6 +75,7 @@ class Routes {
     topicDetailsScreenViewRoute,
     topicConceptScreenViewRoute,
     topicExerciseScreenViewRoute,
+    exerciseQuestionScreenViewRoute,
   };
 }
 
@@ -101,6 +105,8 @@ class Router extends RouterBase {
     RouteDef(Routes.topicConceptScreenViewRoute, page: TopicConceptScreenView),
     RouteDef(Routes.topicExerciseScreenViewRoute,
         page: TopicExerciseScreenView),
+    RouteDef(Routes.exerciseQuestionScreenViewRoute,
+        page: ExerciseQuestionScreenView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -271,6 +277,21 @@ class Router extends RouterBase {
         settings: data,
       );
     },
+    ExerciseQuestionScreenView: (data) {
+      final args = data.getArgs<ExerciseQuestionScreenViewArguments>(
+        orElse: () => ExerciseQuestionScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ExerciseQuestionScreenView(
+          key: args.key,
+          questionType: args.questionType,
+          questionTypeColor: args.questionTypeColor,
+          exerciseId: args.exerciseId,
+          questionGroup: args.questionGroup,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -349,4 +370,19 @@ class TopicExerciseScreenViewArguments {
   final Key key;
   final Map<String, dynamic> topicDetails;
   TopicExerciseScreenViewArguments({this.key, this.topicDetails});
+}
+
+/// ExerciseQuestionScreenView arguments holder class
+class ExerciseQuestionScreenViewArguments {
+  final Key key;
+  final String questionType;
+  final Color questionTypeColor;
+  final String exerciseId;
+  final String questionGroup;
+  ExerciseQuestionScreenViewArguments(
+      {this.key,
+      this.questionType,
+      this.questionTypeColor,
+      this.exerciseId,
+      this.questionGroup});
 }

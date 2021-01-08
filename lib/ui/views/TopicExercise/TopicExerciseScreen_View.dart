@@ -46,60 +46,87 @@ class TopicExerciseScreenView extends StatelessWidget {
                           Container(
                             child: Row(
                               children: [
-                                Container(
-                                  height: 56.0,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'See',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6
-                                          .copyWith(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                InkWell(
+                                  onTap: () {
+                                    model.navigateToExerciseQuestionScreenView(
+                                        'see',
+                                        Colors.red,
+                                        '${model.exerciseList[index]['ex_id']}');
+                                  },
+                                  child: Container(
+                                    height: 56.0,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'See',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6
+                                            .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  height: 56.0,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  decoration: BoxDecoration(
-                                    color: Colors.yellow.shade800,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Try',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6
-                                          .copyWith(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                InkWell(
+                                  onTap: () {
+                                    model.navigateToExerciseQuestionScreenView(
+                                        'try',
+                                        Colors.yellow.shade800,
+                                        '${model.exerciseList[index]['ex_id']}');
+                                  },
+                                  child: Container(
+                                    height: 56.0,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    decoration: BoxDecoration(
+                                      color: Colors.yellow.shade800,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Try',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6
+                                            .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  height: 56.0,
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  decoration: BoxDecoration(
-                                    color: Colors.green,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Apply',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6
-                                          .copyWith(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                InkWell(
+                                  onTap: () {
+                                    model.navigateToExerciseQuestionScreenView(
+                                        'apply',
+                                        Colors.green,
+                                        '${model.exerciseList[index]['ex_id']}');
+                                  },
+                                  child: Container(
+                                    height: 56.0,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Apply',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6
+                                            .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ),
