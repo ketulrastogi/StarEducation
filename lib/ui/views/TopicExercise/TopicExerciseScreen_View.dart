@@ -49,7 +49,7 @@ class TopicExerciseScreenView extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     model.navigateToExerciseQuestionScreenView(
-                                        'see',
+                                        'See',
                                         Colors.red,
                                         '${model.exerciseList[index]['ex_id']}');
                                   },
@@ -77,7 +77,7 @@ class TopicExerciseScreenView extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     model.navigateToExerciseQuestionScreenView(
-                                        'try',
+                                        'Try',
                                         Colors.yellow.shade800,
                                         '${model.exerciseList[index]['ex_id']}');
                                   },
@@ -105,7 +105,7 @@ class TopicExerciseScreenView extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     model.navigateToExerciseQuestionScreenView(
-                                        'apply',
+                                        'Apply',
                                         Colors.green,
                                         '${model.exerciseList[index]['ex_id']}');
                                   },

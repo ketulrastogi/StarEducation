@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:stareducation/constants/const.dart';
-import 'package:stareducation/Theme/Theme.dart';
 import 'package:stareducation/ui/setup_dialog_ui.dart';
 import 'package:stareducation/ui/setup_snackbar_ui.dart';
 
@@ -15,6 +13,7 @@ void main() async {
   setupLocator();
   setupDialogUi();
   setupSnackbarUi();
+
   runApp(MyApp());
 }
 

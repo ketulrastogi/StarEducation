@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stareducation/ui/widgets/QuestionCard/QuestionCardWidget_ViewModel.dart';
 import 'package:stareducation/constants/const.dart';
@@ -21,7 +24,7 @@ class QuestionCardWidgetView extends StatelessWidget {
   final TextEditingController _answerController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  final unescape = new HtmlUnescape();
   @override
   Widget build(BuildContext context) {
     // print('ExerciseId: ${widget.exerciseId}');
@@ -60,11 +63,24 @@ class QuestionCardWidgetView extends StatelessWidget {
                             height: 8.0,
                           ),
                           Container(
-                            child: Text(
-                              model.currentQuestion['title'],
-                              style: Theme.of(context).textTheme.headline5,
-                              // .copyWith(color: Theme.of(context).primaryColor),
+                            child: Html(
+                              data: unescape.convert(
+                                '${model.currentQuestion['title']}',
+                              ),
+                              style: {
+                                "div": Style(
+                                  fontSize: FontSize(24.0),
+                                  // textStyle: TextStyle(
+                                  //   color: Colors.red,
+                                  // ),
+                                ),
+                              },
                             ),
+                            // child: Text(
+                            //   model.currentQuestion['title'],
+                            //   style: Theme.of(context).textTheme.headline5,
+                            //   // .copyWith(color: Theme.of(context).primaryColor),
+                            // ),
                           ),
                           SizedBox(
                             height: 8.0,
@@ -101,8 +117,21 @@ class QuestionCardWidgetView extends StatelessWidget {
                                   : (model.currentQuestion['hint_type'] ==
                                           'content')
                                       ? Container(
-                                          child: Text(
-                                              model.currentQuestion['hint']),
+                                          child: Html(
+                                            data: unescape.convert(
+                                              '${model.currentQuestion['hint']}',
+                                            ),
+                                            style: {
+                                              "div": Style(
+                                                  // fontSize: FontSize(24.0),
+                                                  // textStyle: TextStyle(
+                                                  //   color: Colors.red,
+                                                  // ),
+                                                  ),
+                                            },
+                                          ),
+                                          // child: Text(
+                                          //     model.currentQuestion['hint']),
                                         )
                                       : YoutubePlayer(
                                           controller: YoutubePlayerController(
@@ -313,6 +342,9 @@ class QuestionCardWidgetView extends StatelessWidget {
                             : CircularProgressIndicator(),
                       ),
               ),
+            ),
+            SizedBox(
+              height: 16.0,
             ),
             MaterialButton(
               onPressed: () async {
