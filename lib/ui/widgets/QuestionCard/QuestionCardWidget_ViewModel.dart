@@ -59,6 +59,11 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  setAnswerAsNull() {
+    _answer = null;
+    notifyListeners();
+  }
+
   setAnswer(String value) {
     _answer = value;
     _answerVisible = true;
@@ -97,7 +102,7 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
       if (questionGroup.toLowerCase() == 'task') {
         response = await _subjectService.getTaskQuestion(exerciseId);
       }
-      if (questionGroup.toLowerCase() == 'quiz') {
+      if (questionGroup.toLowerCase() == 'subject_quiz') {
         response = await _subjectService.getSubjectQuiz(exerciseId);
       }
 
@@ -137,11 +142,11 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
 
     if (oldAnswer != null) {
       int index = _answerList.indexOf(oldAnswer);
-      _answerList[index]['yourAnswer'] = _answer;
+      _answerList[index]['your_answer'] = _answer;
     } else {
       _answerList.add({
         ..._currentQuestion,
-        'yourAnswer': _answer,
+        'your_answer': _answer,
       });
     }
     print('Answers ${_answerList.length} :  $_answerList');
@@ -153,14 +158,21 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
   ) async {
     Map<String, dynamic> response;
 
+    print('submitQuestionsAndSetQuizScore: 156');
+
     _correctAnswer = _answerList
-        .where((element) => element['correct_answers'] == element['yourAnswer'])
+        .where(
+            (element) => element['correct_answers'] == element['your_answer'])
         .length;
     _wrongAnswer = _answerList
-        .where((element) => element['correct_answers'] != element['yourAnswer'])
+        .where(
+            (element) => element['correct_answers'] != element['your_answer'])
         .length;
     _totalScore = _correctAnswer;
     _totalQuestion = _questionList.length;
+    print('submitQuestionsAndSetQuizScore: 166');
+
+    print('AnswerList: $answerList');
 
     if (_questionList.length == _answerList.length) {
       try {
@@ -170,9 +182,16 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
           _correctAnswer.toString(),
           _wrongAnswer.toString(),
           _totalScore.toString(),
-          _totalQuestion.toString(),
+          _answerList
+              .map((answer) => {
+                    'title': answer['title'],
+                    'correct_answers': answer['correct_answers'],
+                    'your_answer': answer['your_answer']
+                  })
+              .toList(),
         );
 
+        print('submitQuestionsAndSetQuizScore: 179');
         print('Response: $response');
 
         if (response == null || !response['result']) {

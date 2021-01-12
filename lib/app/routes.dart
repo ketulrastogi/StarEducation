@@ -6,6 +6,7 @@ import 'package:stareducation/ui/views/ChapterProgress/ChapterProgressScreen_Vie
 import 'package:stareducation/ui/views/ForgotOtp/ForgotOtp_View.dart';
 import 'package:stareducation/ui/views/ForgotPassword/ForgotPassword_View.dart';
 import 'package:stareducation/ui/views/ResetPassword/ResetPassword_View.dart';
+import 'package:stareducation/ui/views/SubjectQuiz/SubjectQuizScreen_View.dart';
 import 'package:stareducation/ui/views/Subscription/SubscriptionScreen_View.dart';
 import 'package:stareducation/ui/views/TopicConcept/TopicConceptScreen_View.dart';
 import 'package:stareducation/ui/views/TopicDetails/TopicDetailsScreen_View.dart';
@@ -19,6 +20,8 @@ import 'package:stareducation/ui/views/user_profile/user_profile_view.dart';
 import 'package:stareducation/ui/views/otp/otp_view.dart';
 import 'package:stareducation/ui/views/AddScratchCard/AddScratchCardScreen_View.dart';
 import 'package:stareducation/ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
+import 'package:stareducation/ui/views/SubjectQuizList/SubjectQuizListScreen_View.dart';
+import 'package:stareducation/ui/views/SubjectQuizResult/SubjectQuizResultScreen_View.dart';
 
 // Defining routes and global transitions
 @CustomAutoRouter(
@@ -99,6 +102,18 @@ import 'package:stareducation/ui/views/ExerciseQuestion/ExerciseQuestionScreen_V
     MaterialRoute(
       page: ExerciseQuestionScreenView,
       name: 'exerciseQuestionScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: SubjectQuizListScreenView,
+      name: 'subjectQuizListScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: SubjectQuizScreenView,
+      name: 'SubjectQuizScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: SubjectQuizResultScreenView,
+      name: 'subjectQuizResultScreenViewRoute',
     ),
     // MaterialRoute(
     //   page: HomeScreen,

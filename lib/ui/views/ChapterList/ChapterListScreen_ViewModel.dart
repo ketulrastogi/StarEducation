@@ -34,23 +34,20 @@ class ChapterListScreenViewModel extends BaseViewModel {
   setLastTopicInfo(Map<String, dynamic> subjectDetails,
       Map<String, dynamic> topicDetails) async {
     try {
-      try {
-        Map<String, dynamic> response =
-            await _subjectService.setLastTopicDetail(
-                subjectDetails['sub_id'], topicDetails['top_id']);
-        if (!response['result'] || response['data'] == null) {
-          _snackbarService.showSnackbar(
-              message: 'No chapters available for Selected Subject. ');
-        } else {
-          _chapterList = [...response['data']];
-          notifyListeners();
-        }
-      } catch (e) {
+      Map<String, dynamic> response = await _subjectService.setLastTopicDetail(
+          subjectDetails['sub_id'], topicDetails['top_id']);
+      if (!response['result'] || response['data'] == null) {
         _snackbarService.showSnackbar(
-            message:
-                'An error occured while getting Chapters for Selected Subjects. $e.');
+            message: 'No chapters available for Selected Subject. ');
+      } else {
+        _chapterList = [...response['data']];
+        notifyListeners();
       }
-    } catch (e) {}
+    } catch (e) {
+      _snackbarService.showSnackbar(
+          message:
+              'An error occured while getting Chapters for Selected Subjects. $e.');
+    }
   }
 
   getChapterList(String subjectId) async {
@@ -94,6 +91,14 @@ class ChapterListScreenViewModel extends BaseViewModel {
       Routes.chapterProgressScreenViewRoute,
       arguments:
           ChapterProgressScreenViewArguments(subjectDetails: subjectDetails),
+    );
+  }
+
+  navigateToSubjectQuizListScreen(Map<String, dynamic> subjectDetails) {
+    _navigationService.navigateTo(
+      Routes.subjectQuizListScreenViewRoute,
+      arguments:
+          SubjectQuizListScreenViewArguments(subjectDetails: subjectDetails),
     );
   }
 }

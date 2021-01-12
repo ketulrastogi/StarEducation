@@ -289,18 +289,24 @@ class ChapterListScreenView extends StatelessWidget {
                       flex: 1,
                       child: Card(
                         color: Colors.green.shade800,
-                        child: Container(
-                          height: 128.0,
-                          child: Center(
-                            child: Text(
-                              'Subject Quiz',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                        child: InkWell(
+                          onTap: () {
+                            model.navigateToSubjectQuizListScreen(
+                                subjectDetails);
+                          },
+                          child: Container(
+                            height: 128.0,
+                            child: Center(
+                              child: Text(
+                                'Subject Quiz',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),

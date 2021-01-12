@@ -252,8 +252,9 @@ class QuestionCardWidgetView extends StatelessWidget {
                                                   .indexOf(
                                                       model.currentQuestion) -
                                               1]);
+
+                                          model.setAnswerAsNull();
                                           model.setAnswerVisibility(false);
-                                          model.setAnswer(null);
                                         },
                                         child: Text(
                                           'Previous',
@@ -278,8 +279,9 @@ class QuestionCardWidgetView extends StatelessWidget {
                                                   .indexOf(
                                                       model.currentQuestion) +
                                               1]);
+
+                                          model.setAnswerAsNull();
                                           model.setAnswerVisibility(false);
-                                          model.setAnswer(null);
                                         },
                                         child: Text(
                                           'Next',

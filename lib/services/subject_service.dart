@@ -346,11 +346,12 @@ class SubjectService {
     String correctAnswer,
     String wrongAnswer,
     String totalScore,
-    String questionList,
+    List<Map<String, dynamic>> questionList,
   ) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, dynamic> userProfile =
         jsonDecode(sharedPreferences.getString('user_profile'));
+    print('setQuizScore: 354');
     http.Response response = await http.post(
       "http://sampleserver.org/starmath/api/quiz_score",
       body: {
@@ -359,8 +360,9 @@ class SubjectService {
         'question_type': questionType,
         'correct_answer': correctAnswer,
         'wrong_answer': wrongAnswer,
-        'total_score': totalScore,
-        'question_list': questionList,
+        'total_score':
+            '${correctAnswer.toString()}/${questionList.length.toString()}',
+        'question_list': jsonEncode(questionList),
       },
     );
 

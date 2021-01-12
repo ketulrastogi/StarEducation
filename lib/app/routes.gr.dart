@@ -17,6 +17,9 @@ import '../ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
 import '../ui/views/ForgotOtp/ForgotOtp_View.dart';
 import '../ui/views/ForgotPassword/ForgotPassword_View.dart';
 import '../ui/views/ResetPassword/ResetPassword_View.dart';
+import '../ui/views/SubjectQuiz/SubjectQuizScreen_View.dart';
+import '../ui/views/SubjectQuizList/SubjectQuizListScreen_View.dart';
+import '../ui/views/SubjectQuizResult/SubjectQuizResultScreen_View.dart';
 import '../ui/views/Subscription/SubscriptionScreen_View.dart';
 import '../ui/views/TopicConcept/TopicConceptScreen_View.dart';
 import '../ui/views/TopicDetails/TopicDetailsScreen_View.dart';
@@ -56,6 +59,11 @@ class Routes {
       '/topic-exercise-screen-view';
   static const String exerciseQuestionScreenViewRoute =
       '/exercise-question-screen-view';
+  static const String subjectQuizListScreenViewRoute =
+      '/subject-quiz-list-screen-view';
+  static const String SubjectQuizScreenViewRoute = '/subject-quiz-screen-view';
+  static const String subjectQuizResultScreenViewRoute =
+      '/subject-quiz-result-screen-view';
   static const all = <String>{
     rootViewRoute,
     loginViewRoute,
@@ -76,6 +84,9 @@ class Routes {
     topicConceptScreenViewRoute,
     topicExerciseScreenViewRoute,
     exerciseQuestionScreenViewRoute,
+    subjectQuizListScreenViewRoute,
+    SubjectQuizScreenViewRoute,
+    subjectQuizResultScreenViewRoute,
   };
 }
 
@@ -107,6 +118,11 @@ class Router extends RouterBase {
         page: TopicExerciseScreenView),
     RouteDef(Routes.exerciseQuestionScreenViewRoute,
         page: ExerciseQuestionScreenView),
+    RouteDef(Routes.subjectQuizListScreenViewRoute,
+        page: SubjectQuizListScreenView),
+    RouteDef(Routes.SubjectQuizScreenViewRoute, page: SubjectQuizScreenView),
+    RouteDef(Routes.subjectQuizResultScreenViewRoute,
+        page: SubjectQuizResultScreenView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -292,6 +308,42 @@ class Router extends RouterBase {
         settings: data,
       );
     },
+    SubjectQuizListScreenView: (data) {
+      final args = data.getArgs<SubjectQuizListScreenViewArguments>(
+        orElse: () => SubjectQuizListScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SubjectQuizListScreenView(
+          key: args.key,
+          subjectDetails: args.subjectDetails,
+        ),
+        settings: data,
+      );
+    },
+    SubjectQuizScreenView: (data) {
+      final args = data.getArgs<SubjectQuizScreenViewArguments>(
+        orElse: () => SubjectQuizScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SubjectQuizScreenView(
+          key: args.key,
+          quizDetails: args.quizDetails,
+        ),
+        settings: data,
+      );
+    },
+    SubjectQuizResultScreenView: (data) {
+      final args = data.getArgs<SubjectQuizResultScreenViewArguments>(
+        orElse: () => SubjectQuizResultScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SubjectQuizResultScreenView(
+          key: args.key,
+          quizDetails: args.quizDetails,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -385,4 +437,25 @@ class ExerciseQuestionScreenViewArguments {
       this.questionTypeColor,
       this.exerciseId,
       this.questionGroup});
+}
+
+/// SubjectQuizListScreenView arguments holder class
+class SubjectQuizListScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> subjectDetails;
+  SubjectQuizListScreenViewArguments({this.key, this.subjectDetails});
+}
+
+/// SubjectQuizScreenView arguments holder class
+class SubjectQuizScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> quizDetails;
+  SubjectQuizScreenViewArguments({this.key, this.quizDetails});
+}
+
+/// SubjectQuizResultScreenView arguments holder class
+class SubjectQuizResultScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> quizDetails;
+  SubjectQuizResultScreenViewArguments({this.key, this.quizDetails});
 }
