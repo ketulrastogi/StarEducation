@@ -22,6 +22,13 @@ import 'package:stareducation/ui/views/AddScratchCard/AddScratchCardScreen_View.
 import 'package:stareducation/ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
 import 'package:stareducation/ui/views/SubjectQuizList/SubjectQuizListScreen_View.dart';
 import 'package:stareducation/ui/views/SubjectQuizResult/SubjectQuizResultScreen_View.dart';
+import 'package:stareducation/ui/views/CustomSubjectQuizSelectChaptersAndTopics/CustomSubjectQuizSelectChaptersAndTopicsScreen_View.dart';
+import 'package:stareducation/ui/views/GetCustomQuiz/GetCustomQuizScreen_View.dart';
+import 'package:stareducation/ui/views/CustomQuizQuestion/CustomQuizQuestionScreen_View.dart';
+import 'package:stareducation/ui/views/CustomQuizOldResult/CustomQuizOldResultScreen_View.dart';
+import 'package:stareducation/ui/views/AboutUs/AboutUsScreen_View.dart';
+import 'package:stareducation/ui/views/Feedback/FeedbackScreen_View.dart';
+import 'package:stareducation/ui/views/ContactUs/ContactUsScreen_View.dart';
 
 // Defining routes and global transitions
 @CustomAutoRouter(
@@ -114,6 +121,34 @@ import 'package:stareducation/ui/views/SubjectQuizResult/SubjectQuizResultScreen
     MaterialRoute(
       page: SubjectQuizResultScreenView,
       name: 'subjectQuizResultScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: CustomSubjectQuizSelectChaptersAndTopicsScreenView,
+      name: 'customSubjectQuizSelectChaptersAndTopicsScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: GetCustomQuizScreenView,
+      name: 'getCustomQuizScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: CustomQuizQuestionScreenView,
+      name: 'customQuizQuestionScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: CustomQuizOldResultScreenView,
+      name: 'customQuizOldResultScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: AboutUsScreenView,
+      name: 'aboutUsScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: FeedbackScreenView,
+      name: 'feedbackScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: ContactUsScreenView,
+      name: 'contactUsScreenViewRoute',
     ),
     // MaterialRoute(
     //   page: HomeScreen,

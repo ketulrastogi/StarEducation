@@ -18,10 +18,13 @@ class SubjectQuizResultScreenViewModel extends BaseViewModel {
   String get wrongAnswer => _wrongAnswer;
   String _yourScore;
   String get yourScore => _yourScore;
-  loadData(Map<String, dynamic> quizDetails) async {
+  loadData(
+    String quizId,
+    String quizType,
+  ) async {
     try {
-      Map<String, dynamic> response = await _subjectService.getResult(
-          quizDetails['quiz_id'], 'subject_quiz');
+      Map<String, dynamic> response =
+          await _subjectService.getResult(quizId, quizType);
       if (!response['result'] || response['data'] == null) {
         _snackbarService.showSnackbar(
             message: 'No quiz available for Selected Subject. ');

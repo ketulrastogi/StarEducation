@@ -101,4 +101,13 @@ class ChapterListScreenViewModel extends BaseViewModel {
           SubjectQuizListScreenViewArguments(subjectDetails: subjectDetails),
     );
   }
+
+  navigateToCustomSubjectQuizSelectChaptersAndTopicsScreen(
+      Map<String, dynamic> subjectDetails) {
+    _navigationService.navigateTo(
+      Routes.customSubjectQuizSelectChaptersAndTopicsScreenViewRoute,
+      arguments: CustomSubjectQuizSelectChaptersAndTopicsScreenViewArguments(
+          subjectDetails: subjectDetails),
+    );
+  }
 }

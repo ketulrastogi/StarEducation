@@ -3,14 +3,15 @@ import 'package:stacked/stacked.dart';
 import 'package:stareducation/ui/views/SubjectQuizResult/SubjectQuizResultScreen_ViewModel.dart';
 
 class SubjectQuizResultScreenView extends StatelessWidget {
-  final Map<String, dynamic> quizDetails;
+  final String quizId;
+  final String quizType;
 
-  const SubjectQuizResultScreenView({Key key, this.quizDetails})
+  const SubjectQuizResultScreenView({Key key, this.quizId, this.quizType})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SubjectQuizResultScreenViewModel>.reactive(
-      onModelReady: (model) => model.loadData(quizDetails),
+      onModelReady: (model) => model.loadData(quizId, quizType),
       viewModelBuilder: () => SubjectQuizResultScreenViewModel(),
       builder: (context, model, child) {
         return Scaffold(
@@ -203,7 +204,7 @@ class SubjectQuizResultScreenView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: ListView.builder(
-                                  itemCount: 5,
+                                  itemCount: model.questionList.length,
                                   itemBuilder: (context, index) {
                                     return Card(
                                       child: Container(

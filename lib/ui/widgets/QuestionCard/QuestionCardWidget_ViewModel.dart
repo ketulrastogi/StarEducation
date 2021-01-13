@@ -36,6 +36,8 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
 
   String _message = '';
   String get message => _message;
+  String _customQuizId = '';
+  String get customQuizId => _customQuizId;
 
   Map<String, dynamic> _currentQuestion;
   Map<String, dynamic> get currentQuestion => _currentQuestion;
@@ -81,8 +83,8 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  loadQuestion(
-      String exerciseId, String questionGroup, String questionType) async {
+  loadQuestion(String exerciseId, String questionGroup, String questionType,
+      {Map<String, dynamic> customQuizData}) async {
     Map<String, dynamic> response;
     print('QuestionGroup: $questionGroup');
     print('QuestionType: $questionType');
@@ -105,6 +107,15 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
       if (questionGroup.toLowerCase() == 'subject_quiz') {
         response = await _subjectService.getSubjectQuiz(exerciseId);
       }
+      if (questionGroup.toLowerCase() == 'custom_quiz') {
+        response = await _subjectService.getCustomQuiz(
+          exerciseId,
+          customQuizData['topicIdList'],
+          customQuizData['multiple'],
+          customQuizData['trueFalse'],
+          customQuizData['oneWord'],
+        );
+      }
 
       print('TopicId: $exerciseId');
       print('QuestionGroup: $questionGroup');
@@ -122,7 +133,12 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
           _snackbarService.showSnackbar(
               message: 'No questions available for Selected Exercise. ');
         } else {
-          _message = response['message'];
+          if (questionGroup.toLowerCase() == 'custom_quiz') {
+            _customQuizId = response['quiz_id'].toString();
+          } else {
+            _message = response['message'];
+          }
+
           _questionList = [...response['data']];
           setCurrentQuestion(_questionList[0]);
           notifyListeners();
@@ -177,7 +193,9 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
     if (_questionList.length == _answerList.length) {
       try {
         response = await _subjectService.setQuizScore(
-          exerciseId,
+          (questionType.toLowerCase() == 'custom_quiz')
+              ? _customQuizId
+              : exerciseId,
           questionType,
           _correctAnswer.toString(),
           _wrongAnswer.toString(),
@@ -199,8 +217,17 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
               message: 'An error occured while submitting answers. ');
         } else {
           _navigationService.popRepeated(1);
+          print('QuestionCardViewModel:220 - QuestionType: $_questionType');
+          if (questionType == 'custom_quiz') {
+            _navigationService.popRepeated(2);
+            _navigationService.navigateTo(
+              Routes.subjectQuizResultScreenViewRoute,
+              arguments: SubjectQuizResultScreenViewArguments(
+                  quizId: _customQuizId, quizType: questionType),
+            );
+          }
 
-          if (_questionType == 'see') {
+          if (questionType == 'see') {
             _navigationService.navigateTo(
               Routes.exerciseQuestionScreenViewRoute,
               arguments: ExerciseQuestionScreenViewArguments(
@@ -211,7 +238,7 @@ class QuestionCardWidgetViewModel extends BaseViewModel {
             );
           }
 
-          if (_questionType == 'try') {
+          if (questionType == 'try') {
             _navigationService.navigateTo(
               Routes.exerciseQuestionScreenViewRoute,
               arguments: ExerciseQuestionScreenViewArguments(

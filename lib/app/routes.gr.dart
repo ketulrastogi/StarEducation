@@ -9,13 +9,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/views/AboutUs/AboutUsScreen_View.dart';
 import '../ui/views/AddScratchCard/AddScratchCardScreen_View.dart';
 import '../ui/views/AddSubject/AddSubjectScreen_View.dart';
 import '../ui/views/ChapterList/ChapterListScreen_View.dart';
 import '../ui/views/ChapterProgress/ChapterProgressScreen_View.dart';
+import '../ui/views/ContactUs/ContactUsScreen_View.dart';
+import '../ui/views/CustomQuizOldResult/CustomQuizOldResultScreen_View.dart';
+import '../ui/views/CustomQuizQuestion/CustomQuizQuestionScreen_View.dart';
+import '../ui/views/CustomSubjectQuizSelectChaptersAndTopics/CustomSubjectQuizSelectChaptersAndTopicsScreen_View.dart';
 import '../ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
+import '../ui/views/Feedback/FeedbackScreen_View.dart';
 import '../ui/views/ForgotOtp/ForgotOtp_View.dart';
 import '../ui/views/ForgotPassword/ForgotPassword_View.dart';
+import '../ui/views/GetCustomQuiz/GetCustomQuizScreen_View.dart';
 import '../ui/views/ResetPassword/ResetPassword_View.dart';
 import '../ui/views/SubjectQuiz/SubjectQuizScreen_View.dart';
 import '../ui/views/SubjectQuizList/SubjectQuizListScreen_View.dart';
@@ -64,6 +71,17 @@ class Routes {
   static const String SubjectQuizScreenViewRoute = '/subject-quiz-screen-view';
   static const String subjectQuizResultScreenViewRoute =
       '/subject-quiz-result-screen-view';
+  static const String customSubjectQuizSelectChaptersAndTopicsScreenViewRoute =
+      '/custom-subject-quiz-select-chapters-and-topics-screen-view';
+  static const String getCustomQuizScreenViewRoute =
+      '/get-custom-quiz-screen-view';
+  static const String customQuizQuestionScreenViewRoute =
+      '/custom-quiz-question-screen-view';
+  static const String customQuizOldResultScreenViewRoute =
+      '/custom-quiz-old-result-screen-view';
+  static const String aboutUsScreenViewRoute = '/about-us-screen-view';
+  static const String feedbackScreenViewRoute = '/feedback-screen-view';
+  static const String contactUsScreenViewRoute = '/contact-us-screen-view';
   static const all = <String>{
     rootViewRoute,
     loginViewRoute,
@@ -87,6 +105,13 @@ class Routes {
     subjectQuizListScreenViewRoute,
     SubjectQuizScreenViewRoute,
     subjectQuizResultScreenViewRoute,
+    customSubjectQuizSelectChaptersAndTopicsScreenViewRoute,
+    getCustomQuizScreenViewRoute,
+    customQuizQuestionScreenViewRoute,
+    customQuizOldResultScreenViewRoute,
+    aboutUsScreenViewRoute,
+    feedbackScreenViewRoute,
+    contactUsScreenViewRoute,
   };
 }
 
@@ -123,6 +148,17 @@ class Router extends RouterBase {
     RouteDef(Routes.SubjectQuizScreenViewRoute, page: SubjectQuizScreenView),
     RouteDef(Routes.subjectQuizResultScreenViewRoute,
         page: SubjectQuizResultScreenView),
+    RouteDef(Routes.customSubjectQuizSelectChaptersAndTopicsScreenViewRoute,
+        page: CustomSubjectQuizSelectChaptersAndTopicsScreenView),
+    RouteDef(Routes.getCustomQuizScreenViewRoute,
+        page: GetCustomQuizScreenView),
+    RouteDef(Routes.customQuizQuestionScreenViewRoute,
+        page: CustomQuizQuestionScreenView),
+    RouteDef(Routes.customQuizOldResultScreenViewRoute,
+        page: CustomQuizOldResultScreenView),
+    RouteDef(Routes.aboutUsScreenViewRoute, page: AboutUsScreenView),
+    RouteDef(Routes.feedbackScreenViewRoute, page: FeedbackScreenView),
+    RouteDef(Routes.contactUsScreenViewRoute, page: ContactUsScreenView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -339,8 +375,83 @@ class Router extends RouterBase {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SubjectQuizResultScreenView(
           key: args.key,
-          quizDetails: args.quizDetails,
+          quizId: args.quizId,
+          quizType: args.quizType,
         ),
+        settings: data,
+      );
+    },
+    CustomSubjectQuizSelectChaptersAndTopicsScreenView: (data) {
+      final args = data
+          .getArgs<CustomSubjectQuizSelectChaptersAndTopicsScreenViewArguments>(
+        orElse: () =>
+            CustomSubjectQuizSelectChaptersAndTopicsScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) =>
+            CustomSubjectQuizSelectChaptersAndTopicsScreenView(
+          key: args.key,
+          subjectDetails: args.subjectDetails,
+        ),
+        settings: data,
+      );
+    },
+    GetCustomQuizScreenView: (data) {
+      final args = data.getArgs<GetCustomQuizScreenViewArguments>(
+        orElse: () => GetCustomQuizScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => GetCustomQuizScreenView(
+          key: args.key,
+          subjectId: args.subjectId,
+          topicIdList: args.topicIdList,
+        ),
+        settings: data,
+      );
+    },
+    CustomQuizQuestionScreenView: (data) {
+      final args = data.getArgs<CustomQuizQuestionScreenViewArguments>(
+        orElse: () => CustomQuizQuestionScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CustomQuizQuestionScreenView(
+          key: args.key,
+          subjectId: args.subjectId,
+          topicIdList: args.topicIdList,
+          mutliple: args.mutliple,
+          trueFalse: args.trueFalse,
+          oneWord: args.oneWord,
+        ),
+        settings: data,
+      );
+    },
+    CustomQuizOldResultScreenView: (data) {
+      final args = data.getArgs<CustomQuizOldResultScreenViewArguments>(
+        orElse: () => CustomQuizOldResultScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => CustomQuizOldResultScreenView(
+          key: args.key,
+          subjectId: args.subjectId,
+        ),
+        settings: data,
+      );
+    },
+    AboutUsScreenView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AboutUsScreenView(),
+        settings: data,
+      );
+    },
+    FeedbackScreenView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => FeedbackScreenView(),
+        settings: data,
+      );
+    },
+    ContactUsScreenView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ContactUsScreenView(),
         settings: data,
       );
     },
@@ -456,6 +567,48 @@ class SubjectQuizScreenViewArguments {
 /// SubjectQuizResultScreenView arguments holder class
 class SubjectQuizResultScreenViewArguments {
   final Key key;
-  final Map<String, dynamic> quizDetails;
-  SubjectQuizResultScreenViewArguments({this.key, this.quizDetails});
+  final String quizId;
+  final String quizType;
+  SubjectQuizResultScreenViewArguments({this.key, this.quizId, this.quizType});
+}
+
+/// CustomSubjectQuizSelectChaptersAndTopicsScreenView arguments holder class
+class CustomSubjectQuizSelectChaptersAndTopicsScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> subjectDetails;
+  CustomSubjectQuizSelectChaptersAndTopicsScreenViewArguments(
+      {this.key, this.subjectDetails});
+}
+
+/// GetCustomQuizScreenView arguments holder class
+class GetCustomQuizScreenViewArguments {
+  final Key key;
+  final String subjectId;
+  final String topicIdList;
+  GetCustomQuizScreenViewArguments(
+      {this.key, this.subjectId, this.topicIdList});
+}
+
+/// CustomQuizQuestionScreenView arguments holder class
+class CustomQuizQuestionScreenViewArguments {
+  final Key key;
+  final String subjectId;
+  final String topicIdList;
+  final String mutliple;
+  final String trueFalse;
+  final String oneWord;
+  CustomQuizQuestionScreenViewArguments(
+      {this.key,
+      this.subjectId,
+      this.topicIdList,
+      this.mutliple,
+      this.trueFalse,
+      this.oneWord});
+}
+
+/// CustomQuizOldResultScreenView arguments holder class
+class CustomQuizOldResultScreenViewArguments {
+  final Key key;
+  final String subjectId;
+  CustomQuizOldResultScreenViewArguments({this.key, this.subjectId});
 }

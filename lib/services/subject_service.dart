@@ -507,11 +507,12 @@ class SubjectService {
     Map<String, dynamic> userProfile =
         jsonDecode(sharedPreferences.getString('user_profile'));
     http.Response response = await http.post(
-      "http://sampleserver.org/starmath/api/feedback",
+      "http://sampleserver.org/starmath/api/custom_quiz_question_count",
       body: {
         'user_id': userProfile['id'],
         'subject_id': subjectId,
         'topic_id_array': topicIdArray,
+        // 'topic_id_array': jsonEncode(topicIdArray),
       },
     );
 

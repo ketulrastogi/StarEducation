@@ -33,7 +33,9 @@ class SubjectQuizListScreenViewModel extends BaseViewModel {
     }
   }
 
-  navigateToSubjectQuizScreenOrResultScreen(Map<String, dynamic> quizDetails) {
+  navigateToSubjectQuizScreenOrResultScreen(
+    Map<String, dynamic> quizDetails,
+  ) {
     if (quizDetails['score'] == '') {
       _navigationService.navigateTo(
         Routes.SubjectQuizScreenViewRoute,
@@ -44,8 +46,8 @@ class SubjectQuizListScreenViewModel extends BaseViewModel {
     } else {
       _navigationService.navigateTo(
         Routes.subjectQuizResultScreenViewRoute,
-        arguments:
-            SubjectQuizResultScreenViewArguments(quizDetails: quizDetails),
+        arguments: SubjectQuizResultScreenViewArguments(
+            quizId: quizDetails['quiz_id'], quizType: 'subject_quiz'),
       );
     }
   }

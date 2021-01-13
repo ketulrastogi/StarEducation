@@ -171,7 +171,9 @@ class ChapterListScreenView extends StatelessWidget {
                                         height: 160.0,
                                         child: ListView.builder(
                                           // padding: EdgeInsets.only(left: 8.0),
-                                          itemCount: model.chapterList.length,
+                                          itemCount: model
+                                              .chapterList[cindex]['topic']
+                                              .length,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (context, tindex) {
                                             return Card(
@@ -316,18 +318,25 @@ class ChapterListScreenView extends StatelessWidget {
                       flex: 1,
                       child: Card(
                         color: Colors.orange,
-                        child: Container(
-                          height: 128.0,
-                          child: Center(
-                            child: Text(
-                              'Custom Test',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline6
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                        child: InkWell(
+                          onTap: () {
+                            model
+                                .navigateToCustomSubjectQuizSelectChaptersAndTopicsScreen(
+                                    subjectDetails);
+                          },
+                          child: Container(
+                            height: 128.0,
+                            child: Center(
+                              child: Text(
+                                'Custom Test',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),

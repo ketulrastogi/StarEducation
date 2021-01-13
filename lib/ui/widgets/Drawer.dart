@@ -7,6 +7,7 @@ import 'package:stareducation/services/firebase_auth_service.dart';
 import 'package:stareducation/Screens/AddSubjectScreen.dart';
 import 'package:stareducation/Screens/ProfileScreen.dart';
 import 'package:stareducation/Screens/TrialEndedSubjectScreen.dart';
+import 'package:share/share.dart';
 
 buildDrawer(BuildContext context, Map<String, dynamic> userProfile) {
   final NavigationService _navigationService = locator<NavigationService>();
@@ -98,24 +99,37 @@ buildDrawer(BuildContext context, Map<String, dynamic> userProfile) {
           leading: Icon(
             Icons.apartment,
           ),
+          onTap: () {
+            _navigationService.navigateTo(Routes.aboutUsScreenViewRoute);
+          },
         ),
         ListTile(
           title: Text('Feedback'),
           leading: Icon(
             Icons.feedback,
           ),
+          onTap: () {
+            _navigationService.navigateTo(Routes.feedbackScreenViewRoute);
+          },
         ),
         ListTile(
           title: Text('Contact Us'),
           leading: Icon(
             Icons.contact_mail,
           ),
+          onTap: () {
+            _navigationService.navigateTo(Routes.contactUsScreenViewRoute);
+          },
         ),
         ListTile(
           title: Text('Share App'),
           leading: Icon(
             Icons.share,
           ),
+          onTap: () {
+            Share.share(
+                'Let me recommend you this application \n\n https://play.google.com/store/apps/details?id=com.androidnetworking');
+          },
         ),
         ListTile(
           title: Text('Logout'),

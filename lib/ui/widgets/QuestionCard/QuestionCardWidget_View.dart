@@ -12,13 +12,15 @@ class QuestionCardWidgetView extends StatelessWidget {
   final String questionGroup;
   final String questionType;
   final Color color;
+  final Map<String, dynamic> customQuizData;
 
   QuestionCardWidgetView(
       {Key key,
       this.exerciseId,
       this.questionGroup,
       this.questionType,
-      this.color})
+      this.color,
+      this.customQuizData})
       : super(key: key);
 
   final TextEditingController _answerController = TextEditingController();
@@ -34,6 +36,7 @@ class QuestionCardWidgetView extends StatelessWidget {
         exerciseId,
         questionGroup,
         questionType,
+        customQuizData: customQuizData,
       ),
       viewModelBuilder: () => QuestionCardWidgetViewModel(),
       builder: (context, model, child) {
