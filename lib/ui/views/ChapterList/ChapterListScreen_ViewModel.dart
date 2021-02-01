@@ -110,4 +110,12 @@ class ChapterListScreenViewModel extends BaseViewModel {
           subjectDetails: subjectDetails),
     );
   }
+
+  navigateToChapterQuizListScreen(Map<String, dynamic> chapterDetails) {
+    _navigationService.navigateTo(
+      Routes.chapterQuizListScreenViewRoute,
+      arguments:
+          ChapterQuizListScreenViewArguments(chapterDetails: chapterDetails),
+    );
+  }
 }

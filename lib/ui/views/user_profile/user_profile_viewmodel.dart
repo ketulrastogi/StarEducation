@@ -9,6 +9,7 @@ import 'package:stareducation/models/app_user_model.dart';
 class UserProfileViewModel extends BaseViewModel {
   final FirebaseAuthService _authService = locator<FirebaseAuthService>();
   final NavigationService _navigationService = locator<NavigationService>();
+  final DialogService _dialogService = locator<DialogService>();
   AppUser _appUser;
   String _firstName;
   String _lastName;
@@ -65,6 +66,12 @@ class UserProfileViewModel extends BaseViewModel {
     setBusy(true);
     await _authService.updateProfile(_appUser.userId, firstName, lastName,
         _email, _appUser.phoneNumber, birthdate);
-    _navigationService.popRepeated(1);
+    _dialogService
+        .showCustomDialog(
+          mainButtonTitle: 'Close',
+          title: 'Success',
+          description: 'Your Profile Updated Successfully',
+        )
+        .then((value) => _navigationService.popRepeated(1));
   }
 }

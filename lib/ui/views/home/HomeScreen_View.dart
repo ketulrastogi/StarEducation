@@ -5,9 +5,6 @@ import 'package:stareducation/ui/views/home/HomeScreen_ViewModel.dart';
 import 'package:stareducation/ui/widgets/PopularVideoList/PopularVideoListWidget_View.dart';
 
 class HomeScreenView extends StatelessWidget {
-  final Map<String, dynamic> userProfile;
-
-  const HomeScreenView({Key key, this.userProfile}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeScreenViewModel>.reactive(
@@ -33,7 +30,7 @@ class HomeScreenView extends StatelessWidget {
               ),
             ],
           ),
-          drawer: buildDrawer(context, userProfile),
+          drawer: buildDrawer(context, model.userProfile),
           body: ListView(
             children: [
               Container(
@@ -71,7 +68,7 @@ class HomeScreenView extends StatelessWidget {
                           children: [
                             Container(
                               child: Text(
-                                'Welcome Back \n${userProfile['first_name']} ${userProfile['last_name']}',
+                                'Welcome Back \n${(model.userProfile != null) ? model.userProfile['first_name'] : ''} ${(model.userProfile != null) ? model.userProfile['last_name'] : ''}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline5

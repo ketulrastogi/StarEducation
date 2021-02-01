@@ -38,12 +38,18 @@ void setupDialogUi() {
                 child: Container(
                   child: dialogRequest.showIconInMainButton
                       ? Icon(Icons.check_circle)
-                      : Text(dialogRequest.mainButtonTitle),
+                      : Text(
+                          dialogRequest.mainButtonTitle,
+                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                        ),
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.redAccent,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),

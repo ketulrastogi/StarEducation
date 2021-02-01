@@ -7,6 +7,7 @@ class AddSubjectScreenViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   final SubjectService _subjectService = locator<SubjectService>();
+  final DialogService _dialogService = locator<DialogService>();
   Map<String, dynamic> _boardMediumStandardList;
   Map<String, dynamic> get boardMediumStandardList => _boardMediumStandardList;
 
@@ -106,6 +107,14 @@ class AddSubjectScreenViewModel extends BaseViewModel {
           await _subjectService.addSubject(_selectedSubject['sub_id']);
       if (!response['status'] || response['data'] == null) {
         _snackbarService.showSnackbar(message: response['message']);
+      } else {
+        _dialogService
+            .showCustomDialog(
+              mainButtonTitle: 'Close',
+              title: 'Success',
+              description: 'Subject Added Successfully',
+            )
+            .then((value) => _navigationService.popRepeated(1));
       }
     } catch (e) {
       _snackbarService.showSnackbar(

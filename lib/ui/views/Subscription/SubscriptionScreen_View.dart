@@ -3,10 +3,15 @@ import 'package:stacked/stacked.dart';
 import 'package:stareducation/ui/views/Subscription/SubscriptionScreen_ViewModel.dart';
 
 class SubscriptionScreenView extends StatelessWidget {
+  final String subjectId;
+  final String subjectName;
+
+  const SubscriptionScreenView({Key key, this.subjectId, this.subjectName})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SubscriptionScreenViewModel>.reactive(
-      onModelReady: (model) => model.initializeRazorPay(),
+      onModelReady: (model) => model.loadData(subjectId),
       viewModelBuilder: () => SubscriptionScreenViewModel(),
       builder: (context, model, child) {
         return Scaffold(
@@ -73,7 +78,7 @@ class SubscriptionScreenView extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
-                                  child: Text('Rs. 100.00'),
+                                  child: Text('Rs. ${model.price}'),
                                 ),
                               ],
                             ),
@@ -92,7 +97,8 @@ class SubscriptionScreenView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Total'),
-                          Text('Rs. ${(model.yearSelected ? 100.00 : 0.00)}'),
+                          Text(
+                              'Rs. ${model.yearSelected ? model.price.toString() : 0.0}'),
                         ],
                       ),
                     ),
@@ -109,7 +115,7 @@ class SubscriptionScreenView extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            'Rs. ${(model.yearSelected ? 18.00 : 0.00)}',
+                            'Rs. ${model.yearSelected ? model.gst : 0.0}',
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -124,14 +130,14 @@ class SubscriptionScreenView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Use Wallet\n (Credit Balance: Rs.0.00)',
+                            'Use Wallet\n (Credit Balance: Rs.${model.walletBalance})',
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
                           Text(
-                            'Rs. -0.00',
+                            'Rs. -${model.useWallet}',
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -158,7 +164,7 @@ class SubscriptionScreenView extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            'Rs. ${(model.yearSelected ? 118.00 : 0.00)}',
+                            'Rs. ${model.grandTotal}',
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -187,10 +193,17 @@ class SubscriptionScreenView extends StatelessWidget {
                           color: Colors.white,
                         ),
                   ),
-                  
-                  onPressed: model.yearSelected ? (){
-                    model.checkout();
-                  } : null,
+                  onPressed: model.yearSelected
+                      ? () {
+                          if ((model.walletDetails != null &&
+                              double.parse(model.walletDetails['balance']) >
+                                  ((model.planDetails != null)
+                                      ? double.parse(model.planDetails['price'])
+                                      : 0.0))) {}
+                          model.checkout(
+                              subjectId, subjectName, model.grandTotal);
+                        }
+                      : null,
                 ),
               ),
             ],

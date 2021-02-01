@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route_annotations.dart';
 import 'package:stareducation/ui/views/AddSubject/AddSubjectScreen_View.dart';
 import 'package:stareducation/ui/views/ChapterList/ChapterListScreen_View.dart';
 import 'package:stareducation/ui/views/ChapterProgress/ChapterProgressScreen_View.dart';
+import 'package:stareducation/ui/views/DocumentViewer/DocumentViewerScreen_View.dart';
 import 'package:stareducation/ui/views/ForgotOtp/ForgotOtp_View.dart';
 import 'package:stareducation/ui/views/ForgotPassword/ForgotPassword_View.dart';
 import 'package:stareducation/ui/views/ResetPassword/ResetPassword_View.dart';
@@ -29,6 +30,7 @@ import 'package:stareducation/ui/views/CustomQuizOldResult/CustomQuizOldResultSc
 import 'package:stareducation/ui/views/AboutUs/AboutUsScreen_View.dart';
 import 'package:stareducation/ui/views/Feedback/FeedbackScreen_View.dart';
 import 'package:stareducation/ui/views/ContactUs/ContactUsScreen_View.dart';
+import 'package:stareducation/ui/views/ChapterQuizList/ChapterQuizListScreen_View.dart';
 
 // Defining routes and global transitions
 @CustomAutoRouter(
@@ -149,6 +151,14 @@ import 'package:stareducation/ui/views/ContactUs/ContactUsScreen_View.dart';
     MaterialRoute(
       page: ContactUsScreenView,
       name: 'contactUsScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: DocumentViewerScreenView,
+      name: 'documentViewerScreenViewRoute',
+    ),
+    MaterialRoute(
+      page: ChapterQuizListScreenView,
+      name: 'chapterQuizListScreenViewRoute',
     ),
     // MaterialRoute(
     //   page: HomeScreen,

@@ -16,8 +16,7 @@ class RootViewModel extends StreamViewModel<AppUser> {
     await Future.delayed(Duration(seconds: 3));
     Map<String, dynamic> userProfile = await _authService.getUserProfile();
     if (userProfile != null && userProfile['mobile'] != null) {
-      _navigationService.clearStackAndShow(Routes.homeViewRoute,
-          arguments: HomeScreenViewArguments(userProfile: userProfile));
+      _navigationService.clearStackAndShow(Routes.homeViewRoute);
     } else {
       _navigationService.clearStackAndShow(Routes.loginViewRoute);
     }

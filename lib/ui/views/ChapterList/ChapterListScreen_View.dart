@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stareducation/ui/views/ChapterList/ChapterListScreen_ViewModel.dart';
+import 'package:stareducation/ui/widgets/ImportedDocumetList/ImportedDocumentListWidget_View.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:stareducation/ui/widgets/PopularVideoList/PopularVideoListWidget_View.dart';
 
@@ -161,7 +162,10 @@ class ChapterListScreenView extends StatelessWidget {
                                         color: Theme.of(context).primaryColor,
                                         textColor: Colors.white,
                                         child: Text('Quiz'),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          model.navigateToChapterQuizListScreen(
+                                              model.chapterList[cindex]);
+                                        },
                                       ),
                                     ],
                                   ),
@@ -345,6 +349,10 @@ class ChapterListScreenView extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 8.0,
+              ),
+              ImportedDocumentListWidgetView(),
               SizedBox(
                 height: 8.0,
               ),

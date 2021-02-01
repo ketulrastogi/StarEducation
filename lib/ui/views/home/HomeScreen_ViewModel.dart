@@ -12,6 +12,9 @@ class HomeScreenViewModel extends BaseViewModel {
   final FirebaseAuthService _authService = locator<FirebaseAuthService>();
   // checkLocationPermission() async {}
 
+  Map<String, dynamic> _userProfile;
+  Map<String, dynamic> get userProfile => _userProfile;
+
   List<Map<String, dynamic>> _userSubjectList = [];
   List<Map<String, dynamic>> get userSubjectList => _userSubjectList;
 
@@ -42,6 +45,7 @@ class HomeScreenViewModel extends BaseViewModel {
 
   getUserSubject() async {
     try {
+      _userProfile = await _authService.getUserProfile();
       Map<String, dynamic> response = await _subjectService.getUserSubject();
       if (!response['result'] || response['data'] == null) {
         _snackbarService.showSnackbar(

@@ -225,7 +225,7 @@ class SubjectService {
     Map<String, dynamic> userProfile =
         jsonDecode(sharedPreferences.getString('user_profile'));
     http.Response response = await http.post(
-      "http://sampleserver.org/starmath/api/price_plan",
+      "http://sampleserver.org/starmath/api/subscription",
       body: {
         'user_id': userProfile['id'],
         'sub_id': subjectId,

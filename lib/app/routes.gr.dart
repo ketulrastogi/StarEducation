@@ -14,10 +14,12 @@ import '../ui/views/AddScratchCard/AddScratchCardScreen_View.dart';
 import '../ui/views/AddSubject/AddSubjectScreen_View.dart';
 import '../ui/views/ChapterList/ChapterListScreen_View.dart';
 import '../ui/views/ChapterProgress/ChapterProgressScreen_View.dart';
+import '../ui/views/ChapterQuizList/ChapterQuizListScreen_View.dart';
 import '../ui/views/ContactUs/ContactUsScreen_View.dart';
 import '../ui/views/CustomQuizOldResult/CustomQuizOldResultScreen_View.dart';
 import '../ui/views/CustomQuizQuestion/CustomQuizQuestionScreen_View.dart';
 import '../ui/views/CustomSubjectQuizSelectChaptersAndTopics/CustomSubjectQuizSelectChaptersAndTopicsScreen_View.dart';
+import '../ui/views/DocumentViewer/DocumentViewerScreen_View.dart';
 import '../ui/views/ExerciseQuestion/ExerciseQuestionScreen_View.dart';
 import '../ui/views/Feedback/FeedbackScreen_View.dart';
 import '../ui/views/ForgotOtp/ForgotOtp_View.dart';
@@ -82,6 +84,10 @@ class Routes {
   static const String aboutUsScreenViewRoute = '/about-us-screen-view';
   static const String feedbackScreenViewRoute = '/feedback-screen-view';
   static const String contactUsScreenViewRoute = '/contact-us-screen-view';
+  static const String documentViewerScreenViewRoute =
+      '/document-viewer-screen-view';
+  static const String chapterQuizListScreenViewRoute =
+      '/chapter-quiz-list-screen-view';
   static const all = <String>{
     rootViewRoute,
     loginViewRoute,
@@ -112,6 +118,8 @@ class Routes {
     aboutUsScreenViewRoute,
     feedbackScreenViewRoute,
     contactUsScreenViewRoute,
+    documentViewerScreenViewRoute,
+    chapterQuizListScreenViewRoute,
   };
 }
 
@@ -159,6 +167,10 @@ class Router extends RouterBase {
     RouteDef(Routes.aboutUsScreenViewRoute, page: AboutUsScreenView),
     RouteDef(Routes.feedbackScreenViewRoute, page: FeedbackScreenView),
     RouteDef(Routes.contactUsScreenViewRoute, page: ContactUsScreenView),
+    RouteDef(Routes.documentViewerScreenViewRoute,
+        page: DocumentViewerScreenView),
+    RouteDef(Routes.chapterQuizListScreenViewRoute,
+        page: ChapterQuizListScreenView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -234,14 +246,8 @@ class Router extends RouterBase {
       );
     },
     HomeScreenView: (data) {
-      final args = data.getArgs<HomeScreenViewArguments>(
-        orElse: () => HomeScreenViewArguments(),
-      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomeScreenView(
-          key: args.key,
-          userProfile: args.userProfile,
-        ),
+        builder: (context) => HomeScreenView(),
         settings: data,
       );
     },
@@ -258,8 +264,15 @@ class Router extends RouterBase {
       );
     },
     SubscriptionScreenView: (data) {
+      final args = data.getArgs<SubscriptionScreenViewArguments>(
+        orElse: () => SubscriptionScreenViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SubscriptionScreenView(),
+        builder: (context) => SubscriptionScreenView(
+          key: args.key,
+          subjectId: args.subjectId,
+          subjectName: args.subjectName,
+        ),
         settings: data,
       );
     },
@@ -455,6 +468,31 @@ class Router extends RouterBase {
         settings: data,
       );
     },
+    DocumentViewerScreenView: (data) {
+      final args = data.getArgs<DocumentViewerScreenViewArguments>(
+        orElse: () => DocumentViewerScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => DocumentViewerScreenView(
+          key: args.key,
+          title: args.title,
+          url: args.url,
+        ),
+        settings: data,
+      );
+    },
+    ChapterQuizListScreenView: (data) {
+      final args = data.getArgs<ChapterQuizListScreenViewArguments>(
+        orElse: () => ChapterQuizListScreenViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChapterQuizListScreenView(
+          key: args.key,
+          chapterDetails: args.chapterDetails,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -493,11 +531,12 @@ class ResetPasswordViewArguments {
   ResetPasswordViewArguments({this.key, this.userId});
 }
 
-/// HomeScreenView arguments holder class
-class HomeScreenViewArguments {
+/// SubscriptionScreenView arguments holder class
+class SubscriptionScreenViewArguments {
   final Key key;
-  final Map<String, dynamic> userProfile;
-  HomeScreenViewArguments({this.key, this.userProfile});
+  final String subjectId;
+  final String subjectName;
+  SubscriptionScreenViewArguments({this.key, this.subjectId, this.subjectName});
 }
 
 /// ChapterListScreenView arguments holder class
@@ -611,4 +650,19 @@ class CustomQuizOldResultScreenViewArguments {
   final Key key;
   final String subjectId;
   CustomQuizOldResultScreenViewArguments({this.key, this.subjectId});
+}
+
+/// DocumentViewerScreenView arguments holder class
+class DocumentViewerScreenViewArguments {
+  final Key key;
+  final String title;
+  final String url;
+  DocumentViewerScreenViewArguments({this.key, this.title, this.url});
+}
+
+/// ChapterQuizListScreenView arguments holder class
+class ChapterQuizListScreenViewArguments {
+  final Key key;
+  final Map<String, dynamic> chapterDetails;
+  ChapterQuizListScreenViewArguments({this.key, this.chapterDetails});
 }

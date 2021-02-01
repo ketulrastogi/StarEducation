@@ -8,6 +8,7 @@ class FeedbackScreenViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   final SubjectService _subjectService = locator<SubjectService>();
+  final DialogService _dialogService = locator<DialogService>();
   String _title;
   String get title => _title;
   String _expertCode;
@@ -41,7 +42,13 @@ class FeedbackScreenViewModel extends BaseViewModel {
         _snackbarService.showSnackbar(
             message: 'Feedback submission is failed. Please try again. ');
       } else {
-        _navigationService.popRepeated(1);
+        _dialogService
+            .showCustomDialog(
+              mainButtonTitle: 'Close',
+              title: 'Success',
+              description: 'Your Feedback Sent Successfully',
+            )
+            .then((value) => _navigationService.popRepeated(1));
       }
     } catch (e) {
       _snackbarService.showSnackbar(

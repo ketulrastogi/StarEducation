@@ -8,7 +8,7 @@ class AddScratchCardScreenViewModel extends BaseViewModel {
   final SubjectService _subjectService = locator<SubjectService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
-
+  final DialogService _dialogService = locator<DialogService>();
   String _scratchCardNumber;
   String get scratchCardNumber => _scratchCardNumber;
 
@@ -47,6 +47,13 @@ class AddScratchCardScreenViewModel extends BaseViewModel {
         _snackbarService.showSnackbar(message: response['message']);
       }
       await getWalletDetails();
+      _dialogService
+          .showCustomDialog(
+            mainButtonTitle: 'Close',
+            title: 'Success',
+            description: 'Scratch Card Added Successfully',
+          )
+          .then((value) => _navigationService.popRepeated(1));
     } catch (e) {
       _snackbarService.showSnackbar(
           message: 'An error occured while adding scratch card. $e');

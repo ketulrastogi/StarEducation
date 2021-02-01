@@ -104,8 +104,7 @@ class LoginViewModel extends BaseViewModel {
       _snackbarService.showSnackbar(
           message: 'Phone number or password is wrong. Please try again.');
     } else {
-      _navigationService.navigateTo(Routes.homeViewRoute,
-          arguments: HomeScreenViewArguments(userProfile: response['data']));
+      _navigationService.navigateTo(Routes.homeViewRoute);
     }
     setBusy(false);
   }

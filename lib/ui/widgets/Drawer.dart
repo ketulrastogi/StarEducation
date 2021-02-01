@@ -38,7 +38,7 @@ buildDrawer(BuildContext context, Map<String, dynamic> userProfile) {
               ),
               Container(
                 child: Text(
-                  '${userProfile['first_name']} ${userProfile['last_name']}',
+                  '${(userProfile != null) ? userProfile['first_name'] : ''} ${(userProfile != null) ? userProfile['last_name'] : ''}',
                   style: Theme.of(context).textTheme.subtitle1.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ buildDrawer(BuildContext context, Map<String, dynamic> userProfile) {
               ),
               Container(
                 child: Text(
-                  '${userProfile['mobile']}',
+                  '${(userProfile != null) ? userProfile['mobile'] : ''}',
                   style: Theme.of(context).textTheme.bodyText1.copyWith(
                         color: Colors.white,
                         // fontWeight: FontWeight.bold,
